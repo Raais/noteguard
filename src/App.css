@@ -1,0 +1,56 @@
+.ql-toolbar.ql-snow {
+  border: 1px solid #bbbbbb28;
+  border-radius: 8px;
+}
+
+.ql-toolbar.ql-snow {
+  display: none;
+}
+
+.ql-toolbar.ql-snow:hover {
+  display: block;
+}
+
+.editor-cont:has(> .ql-container.ql-snow:hover) > .ql-toolbar.ql-snow {
+  display: block;
+}
+
+.ql-editor {
+  padding: 40px;
+  font-size: 1rem;
+}
+
+.ql-container.ql-snow {
+  border: none !important;
+}
+
+.flex-reverse {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+
+@keyframes nudge {
+  0% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(10px);
+  }
+}
+
+.nudge-animation:hover {
+  animation: nudge 0.2s ease-in-out;
+}
+
+.tooltip{
+  visibility: hidden;
+  position: absolute;
+}
+.has-tooltip:hover .tooltip {
+  visibility: visible;
+  z-index: 100;
+}
