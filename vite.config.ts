@@ -10,7 +10,8 @@ export default defineConfig(({ mode }) => ({
       "Cross-Origin-Opener-Policy": "same-origin",
       "Cross-Origin-Embedder-Policy": "require-corp",
     },
-  },
+	},
+	base: '/noteguard/',
 	plugins: [
 		nodePolyfills(),
 		tsconfigPaths(),
