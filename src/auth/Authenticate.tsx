@@ -24,7 +24,7 @@ const Authenticate = () => {
 
   useEffect(() => {
     if (hexKey || keyName) {
-      navigate("/noteguard/auth/flow");
+      navigate("/auth/flow");
     }
   }, [navigate]);
 
@@ -58,7 +58,7 @@ const Authenticate = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setMnemonics([]);
-    hexKey && keyName && navigate("/noteguard/auth/flow");
+    hexKey && keyName && navigate("/auth/flow");
   };
 
   const handleCheckboxChange = () => {
@@ -97,7 +97,7 @@ const Authenticate = () => {
       const hash = await sha256(key);
       setKeyName && setKeyName(stringToName(hash));
       setImportedText("");
-      key && hash && navigate("/noteguard/auth/flow");
+      key && hash && navigate("/auth/flow");
     }
   };
 

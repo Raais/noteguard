@@ -57,12 +57,12 @@ const App = () => {
       setSqlite3Instance,
       store
     );
-    navigate("/noteguard/auth");
+    navigate("/auth");
   };
 
   useEffect(() => {
     if (!hexKey || !keyName) {
-      navigate("/noteguard/auth");
+      navigate("/auth");
     }
   }, [hexKey, keyName, navigate]);
 
@@ -84,10 +84,10 @@ const App = () => {
           value={{ hexKey, setHexKey, keyName, setKeyName, logout }}
         >
           <Routes>
-            <Route path="/noteguard/auth" element={<Authenticate />} />
+            <Route path="/auth" element={<Authenticate />} />
 
-            <Route path="/noteguard/auth/flow" element={<Home />} />
-            <Route path="/noteguard" element={<Home />} />
+            <Route path="/auth/flow" element={<Home />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </AuthContext.Provider>
       </PersisterProvider>

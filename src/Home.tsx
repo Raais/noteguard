@@ -32,8 +32,8 @@ const Home = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname !== "/noteguard") {
-      navigate("/noteguard", { replace: true });
+    if (location.pathname !== "/") {
+      navigate("/", { replace: true });
     }
   }, [location]);
 
