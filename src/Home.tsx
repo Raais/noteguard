@@ -119,6 +119,10 @@ const Home = () => {
     return delta.ops.length > 0 ? (delta.ops[0].insert as string) : "";
   };
 
+  const getStringSize = (str: string) => {
+    return new TextEncoder().encode(str).length / 1024;
+  };
+
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -286,6 +290,7 @@ const Home = () => {
                     date={new Date(openedNote.id * 1000)}
                     locale="en-US"
                   />
+                  {` | ${getStringSize(openedNote.content).toFixed(2)} kB`}
                 </span>
                 <button
                   className="border-2 border-white hover:border-red-500 text-red-400 hover:text-red-500 font-medium text-xs py-2 px-4 rounded-lg focus:outline-none mt-4"
