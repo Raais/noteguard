@@ -258,14 +258,14 @@ const Home = () => {
                 </button>
                 <div className="absolute right-2 w-36 mt-2 bg-white rounded-md shadow-md hidden group-focus-within:block transition-opacity duration-100 z-10">
                   <ul className="py-1">
-                    <li
+                    <button
                       className="block px-4 py-2 text-red-400 hover:text-red-600 cursor-pointer"
                       onClick={() => {
                         logout();
                       }}
                     >
                       Logout
-                    </li>
+                    </button>
                   </ul>
                 </div>
               </div>
