@@ -24,7 +24,7 @@ const Authenticate = () => {
 
   useEffect(() => {
     if (hexKey || keyName) {
-      navigate("/auth/flow");
+      navigate("/noteguard/auth/flow");
     }
   }, [navigate]);
 
@@ -58,7 +58,7 @@ const Authenticate = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setMnemonics([]);
-    hexKey && keyName && navigate("/auth/flow");
+    hexKey && keyName && navigate("/noteguard/auth/flow");
   };
 
   const handleCheckboxChange = () => {
@@ -97,7 +97,7 @@ const Authenticate = () => {
       const hash = await sha256(key);
       setKeyName && setKeyName(stringToName(hash));
       setImportedText("");
-      key && hash && navigate("/auth/flow");
+      key && hash && navigate("/noteguard/auth/flow");
     }
   };
 
@@ -312,13 +312,17 @@ const Modal: FC<any> = ({
                 </div>
               ) : (
                 <div className="flex space-x-1">
-
-                <p className="text-xs text-gray-400 noselect">
-                  Save these seed words securely. They are not recoverable.
-                </p>
-                <a className="text-xs text-blue-500 hover:underline noselect" href="https://github.com/satoshilabs/slips/blob/master/slip-0039.md" target="_blank" rel="noreferrer">
-                SLIP39
-                </a>
+                  <p className="text-xs text-gray-400 noselect">
+                    Save these seed words securely. They are not recoverable.
+                  </p>
+                  <a
+                    className="text-xs text-blue-500 hover:underline noselect"
+                    href="https://github.com/satoshilabs/slips/blob/master/slip-0039.md"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    SLIP39
+                  </a>
                 </div>
               )}
             </div>

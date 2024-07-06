@@ -3,13 +3,9 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   Provider as StoreProvider,
   useCreateQueries,
-  useCreateStore
+  useCreateStore,
 } from "tinybase/debug/ui-react";
-import {
-  _clearData,
-  createNewStore,
-  useSqlite3
-} from "./lib/db/DB";
+import { _clearData, createNewStore, useSqlite3 } from "./lib/db/DB";
 
 import { Sqlite3Static } from "@sqlite.org/sqlite-wasm";
 import { SqliteWasmPersister } from "tinybase/persisters/persister-sqlite-wasm";
@@ -28,7 +24,13 @@ const App = () => {
 
   const store = useCreateStore(() => {
     const store = createNewStore();
-    useSqlite3(sqlite3Persister, setSqlite3Persister, sqlite3Instance, setSqlite3Instance, store);
+    useSqlite3(
+      sqlite3Persister,
+      setSqlite3Persister,
+      sqlite3Instance,
+      setSqlite3Instance,
+      store
+    );
     return store;
   });
 
@@ -48,13 +50,19 @@ const App = () => {
     setHexKey(null);
     setKeyName(null);
     _clearData(store);
-    useSqlite3(sqlite3Persister, setSqlite3Persister, sqlite3Instance, setSqlite3Instance, store);
-    navigate("/auth");
+    useSqlite3(
+      sqlite3Persister,
+      setSqlite3Persister,
+      sqlite3Instance,
+      setSqlite3Instance,
+      store
+    );
+    navigate("/noteguard/auth");
   };
 
   useEffect(() => {
     if (!hexKey || !keyName) {
-      navigate("/auth");
+      navigate("/noteguard/auth");
     }
   }, [hexKey, keyName, navigate]);
 
@@ -65,23 +73,21 @@ const App = () => {
   return (
     <StoreProvider store={store} queries={queries}>
       <PersisterProvider
-          value={{
-            sqlite3Persister,
-            sqlite3Instance,
-            setSqlite3Persister,
-            setSqlite3Instance,
-          }}
+        value={{
+          sqlite3Persister,
+          sqlite3Instance,
+          setSqlite3Persister,
+          setSqlite3Instance,
+        }}
       >
         <AuthContext.Provider
           value={{ hexKey, setHexKey, keyName, setKeyName, logout }}
         >
           <Routes>
+            <Route path="/noteguard/auth" element={<Authenticate />} />
 
-            <Route path="/auth" element={<Authenticate />} />
-            
-            <Route path="/auth/flow" element={<Home />} />
-            <Route path="/" element={<Home />} />
-
+            <Route path="/noteguard/auth/flow" element={<Home />} />
+            <Route path="/noteguard" element={<Home />} />
           </Routes>
         </AuthContext.Provider>
       </PersisterProvider>
